@@ -6,15 +6,21 @@ import AboutPreview from "@/components/AboutPreview";
 import Philosophy from "@/components/Philosophy";
 import Testimonials from "@/components/Testimonials";
 import ProgramsPreview from "@/components/ProgramsPreview";
+import StatsSection from "@/components/StatsSection";
+import FloatingWidget from "@/components/ui/FloatingWidget";
+import ScrollProgress from "@/components/ui/ScrollProgress";
 
 const Index = () => {
   return (
     <div className="min-h-screen">
+      <ScrollProgress />
       <Navbar />
+      <FloatingWidget />
       <main>
         <Hero />
         <Newsletter />
         <AboutPreview />
+        <StatsSection />
         <Philosophy />
         <ProgramsPreview />
         <Testimonials />
