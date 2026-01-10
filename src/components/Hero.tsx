@@ -1,16 +1,9 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { useRef } from "react";
 import heroImage from "@/assets/hero-coach.jpg";
-import MagneticButton from "@/components/ui/MagneticButton";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
 
 const Hero = () => {
   const containerRef = useRef(null);
@@ -19,224 +12,162 @@ const Hero = () => {
     offset: ["start start", "end start"],
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], [0, 200]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const y = useTransform(scrollYProgress, [0, 1], [0, 150]);
+  const opacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 1.1]);
-
-  // Text animation variants
-  const letterVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: (i: number) => ({
-      opacity: 1,
-      y: 0,
-      transition: {
-        delay: i * 0.03,
-        duration: 0.5,
-        ease: "easeOut" as const,
-      },
-    }),
-  };
-
-  const titleText = "Start Your";
-  const titleText2 = "to Wellness";
+  const textY = useTransform(scrollYProgress, [0, 1], [0, 100]);
 
   return (
-    <TooltipProvider delayDuration={200}>
-      <section ref={containerRef} className="relative min-h-screen flex items-center overflow-hidden">
-        {/* Animated Background */}
-        <motion.div className="absolute inset-0 z-0" style={{ scale }}>
-          <img
-            src={heroImage}
-            alt="Coach Candice with fresh produce"
-            className="w-full h-full object-cover object-top"
-          />
-          <div className="absolute inset-0 hero-gradient-overlay" />
-        </motion.div>
-
-        {/* Floating decorative elements */}
-        <motion.div
-          className="absolute top-1/4 right-10 w-20 h-20 rounded-full bg-accent/20 blur-2xl"
-          animate={{ 
-            y: [0, -30, 0], 
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.6, 0.3]
-          }}
-          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+    <section ref={containerRef} className="relative min-h-screen flex items-center overflow-hidden">
+      {/* Background Image with Parallax */}
+      <motion.div className="absolute inset-0 z-0" style={{ scale }}>
+        <img
+          src={heroImage}
+          alt="Coach Candice with fresh produce"
+          className="w-full h-full object-cover object-top"
         />
-        <motion.div
-          className="absolute bottom-1/3 left-20 w-32 h-32 rounded-full bg-primary/20 blur-3xl"
-          animate={{ 
-            y: [0, 40, 0], 
-            x: [0, 20, 0],
-            scale: [1, 1.3, 1]
+        <div className="absolute inset-0 hero-gradient-overlay" />
+        
+        {/* Subtle grain texture overlay */}
+        <div 
+          className="absolute inset-0 opacity-[0.03] mix-blend-overlay"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
           }}
-          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
         />
+      </motion.div>
 
-        {/* Content */}
-        <motion.div 
-          className="container-custom relative z-10 pt-20"
-          style={{ y, opacity }}
-        >
-          <div className="max-w-3xl">
-            {/* Badge */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6 }}
-            >
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <motion.span 
-                    className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-4 py-2 font-body text-sm tracking-widest uppercase text-primary-foreground/90 mb-6 cursor-pointer"
-                    whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.15)" }}
-                    transition={{ type: "spring", stiffness: 400 }}
-                  >
-                    <Sparkles className="w-4 h-4" />
-                    Holistic Health Coaching
-                  </motion.span>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>Transform your mind, body & spirit</p>
-                </TooltipContent>
-              </Tooltip>
-            </motion.div>
+      {/* Decorative Elements */}
+      <motion.div
+        className="absolute top-1/4 right-[10%] w-32 h-32 rounded-full border border-primary-foreground/10"
+        style={{ y }}
+        animate={{ 
+          scale: [1, 1.1, 1],
+          opacity: [0.3, 0.5, 0.3],
+        }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <motion.div
+        className="absolute bottom-1/4 left-[5%] w-24 h-24 rounded-full border border-accent/20"
+        style={{ y: useTransform(scrollYProgress, [0, 1], [0, -100]) }}
+        animate={{ 
+          scale: [1, 1.2, 1],
+        }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+      />
 
-            {/* Animated Title */}
-            <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-medium text-primary-foreground leading-tight mb-6">
-              <span className="inline-flex overflow-hidden">
-                {titleText.split("").map((char, i) => (
-                  <motion.span
-                    key={i}
-                    custom={i}
-                    variants={letterVariants}
-                    initial="hidden"
-                    animate="visible"
-                    className={char === " " ? "mr-4" : ""}
-                  >
-                    {char}
-                  </motion.span>
-                ))}
-              </span>
-              {" "}
+      {/* Main Content */}
+      <motion.div 
+        className="container-custom relative z-10 pt-24"
+        style={{ y: textY, opacity }}
+      >
+        <div className="max-w-3xl">
+          {/* Editorial Label */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="mb-8"
+          >
+            <span className="label-editorial text-primary-foreground/70">
+              <span className="inline-block w-8 h-px bg-primary-foreground/50 mr-3" />
+              Holistic Health Coaching
+            </span>
+          </motion.div>
+
+          {/* Main Title */}
+          <motion.h1 
+            className="font-display text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-primary-foreground leading-[0.95] mb-8"
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.4 }}
+          >
+            <span className="block">Begin Your</span>
+            <span className="block mt-2">
               <motion.span 
                 className="italic text-accent inline-block"
-                initial={{ opacity: 0, rotateX: -90 }}
-                animate={{ opacity: 1, rotateX: 0 }}
-                transition={{ delay: 0.4, duration: 0.8, type: "spring" }}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.8 }}
               >
-                Path
+                Journey
               </motion.span>
-              <br />
-              <span className="inline-flex overflow-hidden">
-                {titleText2.split("").map((char, i) => (
-                  <motion.span
-                    key={i}
-                    custom={i + titleText.length + 5}
-                    variants={letterVariants}
-                    initial="hidden"
-                    animate="visible"
-                    className={char === " " ? "mr-4" : ""}
-                  >
-                    {char}
-                  </motion.span>
-                ))}
-              </span>
-            </h1>
+              {" "}to
+            </span>
+            <span className="block mt-2">Wellness</span>
+          </motion.h1>
 
-            <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-              className="font-body text-lg md:text-xl text-primary-foreground/90 max-w-xl mb-10 leading-relaxed"
-            >
-              Partner with Coach Candice to unlock your body's full potential through personalized, holistic wellness coaching. Transform your life—mind, body, and spirit.
-            </motion.p>
+          {/* Subtitle */}
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="font-body text-lg md:text-xl text-primary-foreground/85 max-w-lg mb-12 leading-relaxed font-light"
+          >
+            Partner with Coach Candice to unlock your body's full potential through personalized, holistic wellness coaching.
+          </motion.p>
 
+          {/* CTA Buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            className="flex flex-col sm:flex-row gap-4"
+          >
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="flex flex-col sm:flex-row gap-4"
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.98 }}
             >
-              <MagneticButton>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Button className="btn-coral group relative overflow-hidden">
-                      <motion.span
-                        className="absolute inset-0 bg-white/20"
-                        initial={{ x: "-100%", skewX: "-15deg" }}
-                        whileHover={{ x: "100%" }}
-                        transition={{ duration: 0.5 }}
-                      />
-                      <span className="relative z-10 flex items-center">
-                        Book Today
-                        <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                      </span>
-                    </Button>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>Schedule your free consultation</p>
-                  </TooltipContent>
-                </Tooltip>
-              </MagneticButton>
-              
-              <MagneticButton>
-                <Link to="/coaching">
-                  <Button variant="outline" className="bg-transparent border-2 border-primary-foreground text-primary-foreground hover:bg-primary-foreground/10 font-medium px-8 py-3 rounded-full group">
-                    <span className="relative">
-                      View Programs
-                      <motion.span
-                        className="absolute bottom-0 left-0 w-full h-0.5 bg-primary-foreground origin-left"
-                        initial={{ scaleX: 0 }}
-                        whileHover={{ scaleX: 1 }}
-                        transition={{ duration: 0.3 }}
-                      />
-                    </span>
-                  </Button>
-                </Link>
-              </MagneticButton>
-            </motion.div>
-          </div>
-        </motion.div>
-
-        {/* Enhanced Scroll Indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10"
-        >
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <motion.div 
-                className="flex flex-col items-center gap-2 cursor-pointer"
-                whileHover={{ y: 5 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                <motion.span
-                  className="text-primary-foreground/60 text-xs uppercase tracking-widest"
-                  animate={{ opacity: [0.4, 0.8, 0.4] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                >
-                  Scroll
-                </motion.span>
-                <div className="w-6 h-10 rounded-full border-2 border-primary-foreground/50 flex justify-center pt-2">
-                  <motion.div
-                    animate={{ y: [0, 12, 0] }}
+              <Button className="btn-coral group">
+                <span className="flex items-center gap-2">
+                  Start Your Journey
+                  <motion.span
+                    className="inline-block"
+                    animate={{ x: [0, 4, 0] }}
                     transition={{ duration: 1.5, repeat: Infinity }}
-                    className="w-1.5 h-1.5 bg-primary-foreground/80 rounded-full"
-                  />
-                </div>
+                  >
+                    <ArrowRight className="w-4 h-4" />
+                  </motion.span>
+                </span>
+              </Button>
+            </motion.div>
+            
+            <Link to="/coaching">
+              <motion.div
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <Button className="btn-outline border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10">
+                  Explore Programs
+                </Button>
               </motion.div>
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>Discover more below</p>
-            </TooltipContent>
-          </Tooltip>
+            </Link>
+          </motion.div>
+        </div>
+      </motion.div>
+
+      {/* Scroll Indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5 }}
+        className="absolute bottom-12 left-1/2 -translate-x-1/2 z-10"
+      >
+        <motion.div 
+          className="flex flex-col items-center gap-3"
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <span className="font-body text-[10px] tracking-[0.3em] uppercase text-primary-foreground/50">
+            Scroll
+          </span>
+          <div className="w-px h-12 bg-gradient-to-b from-primary-foreground/50 to-transparent" />
         </motion.div>
-      </section>
-    </TooltipProvider>
+      </motion.div>
+
+      {/* Bottom Gradient Fade */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent z-10" />
+    </section>
   );
 };
 
