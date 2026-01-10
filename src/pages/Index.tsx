@@ -9,10 +9,11 @@ import ProgramsPreview from "@/components/ProgramsPreview";
 import StatsSection from "@/components/StatsSection";
 import FloatingWidget from "@/components/ui/FloatingWidget";
 import ScrollProgress from "@/components/ui/ScrollProgress";
+import PageTransition from "@/components/PageTransition";
 
 const Index = () => {
   return (
-    <div className="min-h-screen">
+    <PageTransition>
       <ScrollProgress />
       <Navbar />
       <FloatingWidget />
@@ -26,7 +27,7 @@ const Index = () => {
         <Testimonials />
       </main>
       <Footer />
-    </div>
+    </PageTransition>
   );
 };
 
