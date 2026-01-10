@@ -23,55 +23,55 @@ const AboutPreview = () => {
   return (
     <section ref={containerRef} className="section-padding bg-secondary/30 overflow-hidden">
       <div className="container-custom">
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-          {/* Image Column */}
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          {/* Image Column - Optimized size */}
           <motion.div
-            initial={{ opacity: 0, x: -60 }}
+            initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 1 }}
-            className="relative order-2 lg:order-1"
+            transition={{ duration: 0.8 }}
+            className="relative order-2 lg:order-1 max-w-sm mx-auto lg:max-w-md"
           >
             <div className="relative">
               {/* Decorative frame */}
               <motion.div 
-                className="absolute -inset-4 border border-primary/10 rounded-3xl"
+                className="absolute -inset-3 border border-primary/10 rounded-2xl"
                 style={{ y: imageY }}
               />
               
-              {/* Main image */}
+              {/* Main image - More compact aspect ratio */}
               <motion.div
-                className="relative rounded-2xl overflow-hidden shadow-elevated"
+                className="relative rounded-xl overflow-hidden shadow-card"
                 whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.6 }}
+                transition={{ duration: 0.5 }}
               >
                 <img
                   src={coachImage}
                   alt="Coach Candice"
-                  className="w-full aspect-[4/5] object-cover"
+                  className="w-full aspect-[3/4] object-cover object-top"
                 />
                 
                 {/* Overlay gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/20 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/15 via-transparent to-transparent" />
               </motion.div>
               
-              {/* Floating stats card */}
+              {/* Floating stats card - More compact */}
               <motion.div
-                className="absolute -right-6 md:-right-12 top-1/4 bg-card rounded-2xl shadow-card p-6 border border-border/50"
+                className="absolute -right-4 md:-right-8 top-1/4 bg-card rounded-xl shadow-soft p-4 border border-border/50"
                 initial={{ opacity: 0, scale: 0.8, x: 20 }}
                 whileInView={{ opacity: 1, scale: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.5, duration: 0.6 }}
-                whileHover={{ y: -4 }}
+                transition={{ delay: 0.4, duration: 0.5 }}
+                whileHover={{ y: -3 }}
               >
-                <span className="font-display text-4xl text-primary block">10+</span>
-                <span className="font-body text-sm text-muted-foreground">Years Experience</span>
+                <span className="font-display text-3xl text-primary block">10+</span>
+                <span className="font-body text-xs text-muted-foreground">Years Experience</span>
               </motion.div>
               
               {/* Decorative accent */}
               <motion.div
-                className="absolute -left-6 bottom-1/4 w-16 h-16 bg-accent/20 rounded-full blur-2xl"
-                animate={{ scale: [1, 1.3, 1] }}
+                className="absolute -left-4 bottom-1/4 w-12 h-12 bg-accent/20 rounded-full blur-xl"
+                animate={{ scale: [1, 1.2, 1] }}
                 transition={{ duration: 4, repeat: Infinity }}
               />
             </div>
