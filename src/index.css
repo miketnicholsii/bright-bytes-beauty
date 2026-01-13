@@ -183,7 +183,7 @@
   /* Terracotta CTA button */
   .btn-coral {
     background: var(--gradient-terracotta);
-    @apply text-white font-medium px-10 py-4 rounded-full transition-all duration-500;
+    @apply text-white font-medium px-6 sm:px-8 md:px-10 py-3 sm:py-4 rounded-full transition-all duration-500;
     box-shadow: 0 8px 24px -6px hsl(18 65% 58% / 0.45);
     font-family: var(--font-body);
     font-weight: 500;
@@ -195,10 +195,19 @@
     box-shadow: 0 16px 40px -8px hsl(18 65% 58% / 0.5);
   }
 
+  @media (hover: none) {
+    .btn-coral:hover {
+      transform: none;
+    }
+    .btn-coral:active {
+      transform: scale(0.98);
+    }
+  }
+
   /* Sage primary button */
   .btn-sage {
     background: var(--gradient-sage);
-    @apply text-white font-medium px-10 py-4 rounded-full transition-all duration-500;
+    @apply text-white font-medium px-6 sm:px-8 md:px-10 py-3 sm:py-4 rounded-full transition-all duration-500;
     box-shadow: 0 8px 24px -6px hsl(145 25% 32% / 0.4);
     font-family: var(--font-body);
     font-weight: 500;
@@ -210,9 +219,18 @@
     box-shadow: 0 16px 40px -8px hsl(145 25% 32% / 0.5);
   }
 
+  @media (hover: none) {
+    .btn-sage:hover {
+      transform: none;
+    }
+    .btn-sage:active {
+      transform: scale(0.98);
+    }
+  }
+
   /* Outline button */
   .btn-outline {
-    @apply border-2 border-current bg-transparent px-10 py-4 rounded-full transition-all duration-500;
+    @apply border-2 border-current bg-transparent px-6 sm:px-8 md:px-10 py-3 sm:py-4 rounded-full transition-all duration-500;
     font-family: var(--font-body);
     font-weight: 500;
     letter-spacing: 0.02em;
@@ -220,6 +238,15 @@
 
   .btn-outline:hover {
     transform: translateY(-2px);
+  }
+
+  @media (hover: none) {
+    .btn-outline:hover {
+      transform: none;
+    }
+    .btn-outline:active {
+      transform: scale(0.98);
+    }
   }
 
   /* Section spacing */
