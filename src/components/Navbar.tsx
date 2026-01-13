@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import { useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Instagram, Facebook } from "lucide-react";
-import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
 import { Button } from "@/components/ui/button";
 
 const navLinks = [
@@ -14,16 +14,18 @@ const navLinks = [
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const location = useLocation();
-
   const { scrollY } = useScroll();
-  
-  useEffect(() => {
-    return scrollY.on("change", (latest) => {
-      setIsScrolled(latest > 50);
-    });
-  }, [scrollY]);
+  const [isScrolled, setIsScrolled] = useState(() => scrollY.get() > 50);
+  const isScrolledRef = useRef(isScrolled);
+  const location = useLocation();
+ 
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    const nextScrolled = latest > 50;
+    if (nextScrolled !== isScrolledRef.current) {
+      isScrolledRef.current = nextScrolled;
+      setIsScrolled(nextScrolled);
+    }
+  });
 
   const navBackground = useTransform(
     scrollY,
@@ -63,7 +65,7 @@ const Navbar = () => {
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center gap-1">
-              {navLinks.map((link, index) => (
+              {navLinks.map((link) => (
                 <Link
                   key={link.path}
                   to={link.path}

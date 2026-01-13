@@ -60,6 +60,10 @@ This project is built with:
 - shadcn-ui
 - Tailwind CSS
 
+## Dependency hygiene
+
+- TODO: `@hookform/resolvers`, `date-fns`, and `zod` are not referenced in `src/` right now—consider pruning if they are not part of planned work. 
+
 ## How can I deploy this project?
 
 Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
