@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Instagram, Facebook, Mail, MapPin, ArrowUp } from "lucide-react";
+import { Mail, MapPin, ArrowUp } from "lucide-react";
 import { motion } from "framer-motion";
 
 const Footer = () => {
@@ -34,24 +34,6 @@ const Footer = () => {
             <p className="font-body text-background/60 leading-relaxed mb-8 max-w-xs">
               Empowering you to live your healthiest, happiest life through holistic wellness coaching.
             </p>
-            <div className="flex gap-3">
-              {[
-                { icon: Facebook, href: "https://www.facebook.com", label: "Facebook" },
-                { icon: Instagram, href: "https://www.instagram.com", label: "Instagram" },
-              ].map((social) => (
-                <motion.a
-                  key={social.label}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-11 h-11 rounded-full border border-background/20 flex items-center justify-center text-background/60 hover:text-background hover:border-background/40 transition-all"
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <social.icon size={18} strokeWidth={1.5} />
-                </motion.a>
-              ))}
-            </div>
           </motion.div>
 
           {/* Navigation */}

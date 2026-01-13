@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Instagram, Facebook } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
 import { Button } from "@/components/ui/button";
 
@@ -102,31 +102,8 @@ const Navbar = () => {
               ))}
             </div>
 
-            {/* Desktop CTA & Social */}
+            {/* Desktop CTA */}
             <div className="hidden lg:flex items-center gap-6">
-              <div className="flex items-center gap-2">
-                {[
-                  { icon: Facebook, href: "https://www.facebook.com", label: "Facebook" },
-                  { icon: Instagram, href: "https://www.instagram.com", label: "Instagram" },
-                ].map((social) => (
-                  <motion.a
-                    key={social.label}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`p-2 rounded-full transition-colors duration-300 ${
-                      isScrolled 
-                        ? "text-muted-foreground hover:text-primary hover:bg-primary/5" 
-                        : "text-primary-foreground/70 hover:text-primary-foreground hover:bg-white/10"
-                    }`}
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <social.icon size={18} strokeWidth={1.5} />
-                  </motion.a>
-                ))}
-              </div>
-              
               <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }}>
                 <Button className="btn-coral text-sm px-6 py-2.5">
                   Book a Call
@@ -218,23 +195,6 @@ const Navbar = () => {
                   Book a Call
                 </Button>
                 
-                <div className="flex items-center justify-center gap-6 mt-8">
-                  {[
-                    { icon: Facebook, href: "https://www.facebook.com" },
-                    { icon: Instagram, href: "https://www.instagram.com" },
-                  ].map((social, i) => (
-                    <motion.a
-                      key={i}
-                      href={social.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-3 text-primary-foreground/70 hover:text-primary-foreground transition-colors"
-                      whileHover={{ scale: 1.1 }}
-                    >
-                      <social.icon size={24} strokeWidth={1.5} />
-                    </motion.a>
-                  ))}
-                </div>
               </motion.div>
             </div>
           </motion.div>

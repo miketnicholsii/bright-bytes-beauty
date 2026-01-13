@@ -5,8 +5,6 @@ import {
   MapPin, 
   Send, 
   CheckCircle, 
-  Instagram, 
-  Facebook,
   Clock,
   Sparkles
 } from "lucide-react";
@@ -37,11 +35,6 @@ const contactInfo = [
     value: "Mon - Fri: 9AM - 5PM\nWeekends: By Appointment",
     href: null,
   },
-];
-
-const socialLinks = [
-  { icon: Facebook, href: "https://www.facebook.com", label: "Facebook" },
-  { icon: Instagram, href: "https://www.instagram.com", label: "Instagram" },
 ];
 
 const Contact = () => {
@@ -242,33 +235,6 @@ const Contact = () => {
                   ))}
                 </div>
 
-                {/* Social Links */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.4 }}
-                  className="pt-4 sm:pt-6"
-                >
-                  <span className="font-body text-xs sm:text-sm text-muted-foreground block mb-3 sm:mb-4">
-                    Follow Us
-                  </span>
-                  <div className="flex gap-3">
-                    {socialLinks.map((social) => (
-                      <motion.a
-                        key={social.label}
-                        href={social.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="w-11 h-11 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-card border border-border/50 flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/30 hover:bg-primary/5 transition-all"
-                        whileHover={{ scale: 1.1, y: -2 }}
-                        whileTap={{ scale: 0.95 }}
-                      >
-                        <social.icon size={18} strokeWidth={1.5} />
-                      </motion.a>
-                    ))}
-                  </div>
-                </motion.div>
               </motion.div>
 
               {/* Contact Form Column */}
