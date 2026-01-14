@@ -160,8 +160,8 @@ const ProgramsPreview = () => {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  <Button className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-medium rounded-full">
-                    Get Started
+                  <Button asChild className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-medium rounded-full">
+                    <Link to="/contact#contact-form">Get Started</Link>
                   </Button>
                 </motion.div>
               </motion.div>

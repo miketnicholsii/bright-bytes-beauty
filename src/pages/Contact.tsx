@@ -254,6 +254,7 @@ const Contact = () => {
                   />
                   
                   <form 
+                    id="contact-form"
                     onSubmit={handleSubmit}
                     className="relative bg-card rounded-2xl sm:rounded-3xl p-5 sm:p-6 md:p-8 lg:p-10 border border-border/50 shadow-soft"
                   >
@@ -445,16 +446,18 @@ const Contact = () => {
                 whileTap={{ scale: 0.98 }}
                 className="inline-block"
               >
-                <Button className="btn-coral group text-sm sm:text-base">
-                  <span className="flex items-center gap-2">
-                    Schedule a Call
-                    <motion.span
-                      animate={{ x: [0, 4, 0] }}
-                      transition={{ duration: 1.5, repeat: Infinity }}
-                    >
-                      →
-                    </motion.span>
-                  </span>
+                <Button asChild className="btn-coral group text-sm sm:text-base">
+                  <a href="#contact-form">
+                    <span className="flex items-center gap-2">
+                      Schedule a Call
+                      <motion.span
+                        animate={{ x: [0, 4, 0] }}
+                        transition={{ duration: 1.5, repeat: Infinity }}
+                      >
+                        →
+                      </motion.span>
+                    </span>
+                  </a>
                 </Button>
               </motion.div>
             </motion.div>
