@@ -118,17 +118,19 @@ const Hero = () => {
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.98 }}
             >
-              <Button className="btn-coral group w-full sm:w-auto text-sm sm:text-base py-3 sm:py-4">
-                <span className="flex items-center justify-center gap-2">
-                  Start Your Journey
-                  <motion.span
-                    className="inline-block"
-                    animate={{ x: [0, 4, 0] }}
-                    transition={{ duration: 1.5, repeat: Infinity }}
-                  >
-                    <ArrowRight className="w-4 h-4" />
-                  </motion.span>
-                </span>
+              <Button asChild className="btn-coral group w-full sm:w-auto text-sm sm:text-base py-3 sm:py-4">
+                <Link to="/contact#contact-form">
+                  <span className="flex items-center justify-center gap-2">
+                    Start Your Journey
+                    <motion.span
+                      className="inline-block"
+                      animate={{ x: [0, 4, 0] }}
+                      transition={{ duration: 1.5, repeat: Infinity }}
+                    >
+                      <ArrowRight className="w-4 h-4" />
+                    </motion.span>
+                  </span>
+                </Link>
               </Button>
             </motion.div>
             

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { MessageCircle, X, Calendar, Phone, Mail, Sparkles } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { MessageCircle, X, Calendar, Mail, MapPin } from "lucide-react";
+import { Link } from "react-router-dom";
 import {
   Tooltip,
   TooltipContent,
@@ -11,13 +11,33 @@ import {
 
 const FloatingWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [hoveredItem, setHoveredItem] = useState<string | null>(null);
 
   const actions = [
-    { id: "call", icon: Phone, label: "Call Now", color: "bg-highlight" },
-    { id: "email", icon: Mail, label: "Send Email", color: "bg-accent" },
-    { id: "book", icon: Calendar, label: "Book Session", color: "bg-primary" },
+    {
+      id: "email",
+      icon: Mail,
+      label: "Send Email",
+      color: "bg-accent",
+      href: "mailto:contactme@thrivewithcoachcandice.com",
+    },
+    {
+      id: "directions",
+      icon: MapPin,
+      label: "Get Directions",
+      color: "bg-highlight",
+      href: "https://maps.google.com/?q=265+Eastchester+Drive+Suite+109+High+Point+NC+27262",
+      external: true,
+    },
+    {
+      id: "book",
+      icon: Calendar,
+      label: "Book Session",
+      color: "bg-primary",
+      to: "/contact#contact-form",
+    },
   ];
+
+  const MotionLink = motion(Link);
 
   return (
     <TooltipProvider delayDuration={0}>
@@ -40,15 +60,29 @@ const FloatingWidget = () => {
                 >
                   <Tooltip>
                     <TooltipTrigger asChild>
-                      <motion.button
-                        whileHover={{ scale: 1.15, x: -5 }}
-                        whileTap={{ scale: 0.95 }}
-                        onHoverStart={() => setHoveredItem(action.id)}
-                        onHoverEnd={() => setHoveredItem(null)}
-                        className={`${action.color} w-12 h-12 rounded-full flex items-center justify-center text-white shadow-lg transition-shadow hover:shadow-xl`}
-                      >
-                        <action.icon size={20} />
-                      </motion.button>
+                      {action.to ? (
+                        <MotionLink
+                          to={action.to}
+                          whileHover={{ scale: 1.15, x: -5 }}
+                          whileTap={{ scale: 0.95 }}
+                          className={`${action.color} w-12 h-12 rounded-full flex items-center justify-center text-white shadow-lg transition-shadow hover:shadow-xl`}
+                          aria-label={action.label}
+                        >
+                          <action.icon size={20} />
+                        </MotionLink>
+                      ) : (
+                        <motion.a
+                          href={action.href}
+                          target={action.external ? "_blank" : undefined}
+                          rel={action.external ? "noopener noreferrer" : undefined}
+                          whileHover={{ scale: 1.15, x: -5 }}
+                          whileTap={{ scale: 0.95 }}
+                          className={`${action.color} w-12 h-12 rounded-full flex items-center justify-center text-white shadow-lg transition-shadow hover:shadow-xl`}
+                          aria-label={action.label}
+                        >
+                          <action.icon size={20} />
+                        </motion.a>
+                      )}
                     </TooltipTrigger>
                     <TooltipContent side="left" className="font-medium">
                       {action.label}

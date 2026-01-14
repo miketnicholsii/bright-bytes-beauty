@@ -51,13 +51,11 @@ const Navbar = () => {
                 transition={{ type: "spring", stiffness: 400 }}
               >
                 <span className={`font-display text-2xl md:text-3xl font-medium tracking-tight transition-colors duration-500 ${
-                  isScrolled ? "text-foreground" : "text-primary-foreground"
+                  isScrolled ? "text-foreground" : "text-primary"
                 }`}>
                   Thrive
                 </span>
-                <span className={`font-body text-[10px] tracking-[0.3em] uppercase transition-colors duration-500 ${
-                  isScrolled ? "text-muted-foreground" : "text-primary-foreground/70"
-                }`}>
+                <span className="font-body text-[10px] tracking-[0.3em] uppercase text-muted-foreground transition-colors duration-500">
                   with Coach Candice
                 </span>
               </motion.div>
@@ -78,8 +76,8 @@ const Navbar = () => {
                           ? "text-primary" 
                           : "text-foreground/70 group-hover:text-foreground"
                         : location.pathname === link.path
-                          ? "text-primary-foreground"
-                          : "text-primary-foreground/80 group-hover:text-primary-foreground"
+                          ? "text-primary"
+                          : "text-foreground/80 group-hover:text-primary"
                     }`}
                   >
                     {link.name}
@@ -88,7 +86,7 @@ const Navbar = () => {
                   {/* Active/Hover indicator */}
                   <motion.span
                     className={`absolute bottom-0 left-1/2 h-0.5 rounded-full transition-all duration-300 ${
-                      isScrolled ? "bg-primary" : "bg-primary-foreground"
+                      isScrolled ? "bg-primary" : "bg-primary"
                     }`}
                     initial={{ width: 0, x: "-50%" }}
                     animate={{ 
@@ -105,8 +103,8 @@ const Navbar = () => {
             {/* Desktop CTA */}
             <div className="hidden lg:flex items-center gap-6">
               <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }}>
-                <Button className="btn-coral text-sm px-6 py-2.5">
-                  Book a Call
+                <Button asChild className="btn-coral text-sm px-6 py-2.5">
+                  <Link to="/contact#contact-form">Book a Call</Link>
                 </Button>
               </motion.div>
             </div>
@@ -115,7 +113,7 @@ const Navbar = () => {
             <motion.button
               onClick={() => setIsOpen(!isOpen)}
               className={`lg:hidden p-2 rounded-lg transition-colors ${
-                isScrolled ? "text-foreground" : "text-primary-foreground"
+                isScrolled ? "text-foreground" : "text-primary"
               }`}
               whileTap={{ scale: 0.9 }}
             >
@@ -189,10 +187,12 @@ const Navbar = () => {
                 className="mt-12 pt-8 border-t border-primary-foreground/20"
               >
                 <Button 
-                  onClick={() => setIsOpen(false)}
+                  asChild
                   className="btn-coral w-full text-lg"
                 >
-                  Book a Call
+                  <Link to="/contact#contact-form" onClick={() => setIsOpen(false)}>
+                    Book a Call
+                  </Link>
                 </Button>
                 
               </motion.div>

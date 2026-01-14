@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PageTransition from "@/components/PageTransition";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import vegetablesHero from "@/assets/vegetables-hero.jpg";
 
 const programs = [
@@ -136,9 +137,11 @@ const Coaching = () => {
                       ))}
                     </ul>
                     
-                    <Button className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-medium rounded-full group/btn">
-                      Get Started
-                      <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
+                    <Button asChild className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-medium rounded-full group/btn">
+                      <Link to="/contact#contact-form">
+                        Get Started
+                        <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
+                      </Link>
                     </Button>
                   </motion.div>
                 </motion.div>
@@ -166,9 +169,11 @@ const Coaching = () => {
                 whileTap={{ scale: 0.98 }}
                 className="inline-block"
               >
-                <Button className="btn-coral group">
-                  Book a Free Consultation
-                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                <Button asChild className="btn-coral group">
+                  <Link to="/contact#contact-form">
+                    Book a Free Consultation
+                    <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </Link>
                 </Button>
               </motion.div>
             </motion.div>
